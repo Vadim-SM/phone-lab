@@ -1,3 +1,4 @@
+import java.util.Objects;
 public class Phone {
     private String brand;
     private String model;
@@ -41,5 +42,27 @@ public class Phone {
 
     public void setMemoryGb(int memoryGb) {
         this.memoryGb = memoryGb;
+    }
+    
+    @Override
+    public String toString() {
+        return "Phone{brand='" + brand + "', model='" + model
+                + "', price=" + price + ", memoryGb=" + memoryGb + "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Phone phone = (Phone) o;
+        return Double.compare(phone.price, price) == 0
+                && memoryGb == phone.memoryGb
+                && Objects.equals(brand, phone.brand)
+                && Objects.equals(model, phone.model);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, model, price, memoryGb);
     }
 }
